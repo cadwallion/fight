@@ -17,20 +17,17 @@ module FightRPG
   end
 
   class User
-    class << self
-
-      def create nick
-        user = self.new nick
-        user.level = 1
-        user.experience = 0
-        user.armor = rand(5)
-        user.weapon = rand(5)
-
-        user
-      end
-    end
-
     attr_reader :nick
+
+    def self.create nick
+      user = self.new nick
+      user.level = 1
+      user.experience = 0
+      user.armor = rand(5)
+      user.weapon = rand(5)
+
+      user
+    end
 
     def initialize nick
       @nick = nick
@@ -46,6 +43,10 @@ module FightRPG
 
     def weapon_index
       fetch 'weapon'
+    end
+
+    def weapon
+      Fight::WEAPONS[level][weapon_index]
     end
 
     def weapon= weapon_index
