@@ -41,6 +41,10 @@ module FightRPG
       save 'armor', armor_index
     end
 
+    def armor
+      Fight::ARMOR[level][armor_index]
+    end
+
     def weapon_index
       fetch 'weapon'
     end
